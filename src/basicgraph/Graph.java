@@ -3,8 +3,10 @@ package basicgraph;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -121,8 +123,16 @@ public abstract class Graph {
 	 * @return The degree sequence of this graph.
 	 */
 	public List<Integer> degreeSequence() {
-		// XXX: Implement in part 1 of week 2
-		return null;
+		List<Integer> degreeSequence = new ArrayList<Integer>();
+		
+		for (int v =0;v< getNumVertices();++v) {
+			int sum = 0;
+			
+			sum = getInNeighbors(v).size() + getNeighbors(v).size();
+			degreeSequence.add(sum);
+			}
+		Collections.sort(degreeSequence,Collections.reverseOrder());
+		return degreeSequence;
 	}
 	
 	/**
@@ -235,6 +245,7 @@ public abstract class Graph {
 		// For testing of Part 1 functionality
 		// Add your tests here to make sure your degreeSequence method is returning
 		// the correct list, after examining the graphs.
+		
 		System.out.println("Loading graphs based on real data...");
 		System.out.println("Goal: use degree sequence to analyse graphs.");
 		
